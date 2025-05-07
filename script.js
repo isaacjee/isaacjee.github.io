@@ -27,6 +27,7 @@ function loadScenario(index) {
         btn.onclick = () => start();
     }
     else if (currentScenarioIndex <= scenarios.length - 3) {
+        document.getElementById("start").classList.add("hidden");
         
         scenario.choices.forEach((choice, i) => {
             const btn = document.getElementById(`choice-${i}`);
