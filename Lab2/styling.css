@@ -1,0 +1,60 @@
+body {
+    background-color: beige;
+}
+
+h1, h2, h3, a, p, ul, table, th, td {
+    color: black;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+h1 {
+    font-size: 50px;
+    margin-top: 20px;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.sidebyside {
+    width: 20%;
+    padding: 10px;
+}
+
+a {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+p, h2, h3, ul {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%
+}
+
+h3 {
+    font-size: 20px;
+}
+
+p, ul {
+    font-size: 17px;
+}
+
+table, th, td {
+    border: 1px;
+    border-style: solid;
+    border-collapse: collapse;
+    border-color: black;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+}
+
+iframe {
+    width: 700px;
+    height: 350px;
+    border: none;
+}
