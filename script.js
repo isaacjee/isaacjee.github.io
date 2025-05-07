@@ -1,6 +1,6 @@
-let currentScenarioIndex = parseInt(localStorage.getItem("currentScenarioIndex")) || 0;;
-let goodChoices = parseInt(localStorage.getItem("goodChoices")) || 0;
-let harmfulChoices = parseInt(localStorage.getItem("harmfulChoices")) || 0;
+let currentScenarioIndex = parseInt(sessionStorage.getItem("currentScenarioIndex")) || 0;;
+let goodChoices = parseInt(sessionStorage.getItem("goodChoices")) || 0;
+let harmfulChoices = parseInt(sessionStorage.getItem("harmfulChoices")) || 0;
 
 
 function loadScenario(index) {
@@ -37,14 +37,14 @@ function showOutcome(outcomeText, choiceType) {
     if (choiceType === "good") goodChoices++;
     else if (choiceType === "harmful") harmfulChoices++;
 
-    localStorage.setItem("goodChoices", goodChoices);
-    localStorage.setItem("harmfulChoices", harmfulChoices);
+    sessionStorage.setItem("goodChoices", goodChoices);
+    sessionStorage.setItem("harmfulChoices", harmfulChoices);
 
     updateScoreDisplay();
 
     currentScenarioIndex = (currentScenarioIndex + 1) % scenarios.length;
 
-    localStorage.setItem("currentScenarioIndex", currentScenarioIndex);
+    sessionStorage.setItem("currentScenarioIndex", currentScenarioIndex);
 }
 
 document.getElementById("next-scenario").onclick = () => {
@@ -59,9 +59,9 @@ function updateScoreDisplay() {
 }
   
 function resetProgress() {
-    localStorage.removeItem("currentScenarioIndex");
-    localStorage.removeItem("goodChoices");
-    localStorage.removeItem("harmfulChoices");
+    sessionStorage.removeItem("currentScenarioIndex");
+    sessionStorage.removeItem("goodChoices");
+    sessionStorage.removeItem("harmfulChoices");
     currentScenarioIndex = 0;
     goodChoices = 0;
     harmfulChoices = 0;
@@ -70,7 +70,7 @@ function resetProgress() {
   }  
 
 window.onload = () => {
-    const savedIndex = localStorage.getItem("currentScenarioIndex");
+    const savedIndex = sessionStorage.getItem("currentScenarioIndex");
     currentScenarioIndex = savedIndex ? parseInt(savedIndex) : 0;
     loadScenario(currentScenarioIndex);
     updateScoreDisplay();
