@@ -16,8 +16,17 @@ function loadScenario(index) {
     } else {
         imageElement.classList.add("hidden");
     }
-
-    if (currentScenarioIndex <= scenarios.length - 3) {
+    if (currentScenarioIndex == 0) {
+        document.getElementById("start").classList.remove("hidden");
+        document.getElementById("scenario-title").classList.add("hidden");
+        document.getElementById("scenario-description").classList.add("hidden")
+        document.getElementById("restart").classList.add("hidden");
+        document.getElementById("choice-1").classList.add("hidden");
+        const btn = document.getElementById(`choice-0`);
+        btn.textContent = "Start";
+        btn.onclick = () => start();
+    }
+    else if (currentScenarioIndex <= scenarios.length - 3) {
         
         scenario.choices.forEach((choice, i) => {
             const btn = document.getElementById(`choice-${i}`);
@@ -38,6 +47,8 @@ function loadScenario(index) {
     }
     else {
         document.getElementById("choice-0").classList.add("hidden");
+        document.getElementById("choice-1").classList.add("hidden");
+        rating();
     }
 
     document.getElementById("outcome").classList.add("hidden");
@@ -78,6 +89,42 @@ function showResults() {
 
     sessionStorage.setItem("currentScenarioIndex", currentScenarioIndex);
 
+    loadScenario(currentScenarioIndex);
+}
+
+function rating() {
+    rate = "";
+
+    if (goodChoices == scenarios.length - 3) {
+        rate = `Congrats! You made all the right choices to conserve the whales. Score: ${goodChoices}/${goodChoices + harmfulChoices}`;
+    }
+    else if (goodChoices > scenarios.length * 0.66) {
+        rate = `You did pretty good! You made most of the right choices for the whales. Score: ${goodChoices}/${goodChoices + harmfulChoices}`;
+    }
+    else if (goodChoices > scenarios.length * 0.33) {
+        rate = `Your decision making could use some work! You only made some of the right choices for the whales. Score: ${goodChoices}/${goodChoices + harmfulChoices}`;
+    }
+    else if (goodChoices >= 1) {
+        rate = `You only made one right choice for the whales! Do you even care about them? Score: ${goodChoices}/${goodChoices + harmfulChoices}`;
+    }
+    else {
+        rate = "You made 0 right choices. I think you hate whales...";
+    }
+
+    document.getElementById("scenario-description").textContent = rate;
+}
+
+function start() {
+    document.getElementById("scenario-title").classList.remove("hidden");
+    document.getElementById("scenario-description").classList.remove("hidden")
+    document.getElementById("restart").classList.remove("hidden");
+    document.getElementById("choice-0").classList.remove("hidden");
+    document.getElementById("choice-1").classList.remove("hidden");
+
+    document.getElementById("start").classList.add("hidden");
+
+    currentScenarioIndex = (currentScenarioIndex + 1);
+    sessionStorage.setItem("currentScenarioIndex", currentScenarioIndex);
     loadScenario(currentScenarioIndex);
 }
 
