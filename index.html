@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whale Conservation Decisions</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="game-container">
+    <button onclick="resetProgress()">Reset Progress</button>
+    <p id="score-display">Conservation Score: 0 Good, 0 Harmful</p>
+    <h1 id="scenario-title"></h1>
+    <p id="scenario-description"></p>
+    <div id="choices">
+      <button id="choice-0"></button>
+      <button id="choice-1"></button>
+    </div>
+    <p id="outcome" class="hidden"></p>
+    <button id="next-scenario" class="hidden">Next Scenario</button>
+  </div>
+  <script src="scenarios.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
