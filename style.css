@@ -17,7 +17,15 @@ body {
     max-width: 100%;
     border-radius: 8px;
     margin-bottom: 1rem;
-  }  
+  }
+  
+  #start {
+    font-family:'Georgia', Cursive, monospace;
+    font-size: 300%;
+    text-align: center;
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+  }
   
   button {
     display: block;
