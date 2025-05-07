@@ -95,7 +95,7 @@ function showResults() {
 function rating() {
     rate = "";
 
-    if (goodChoices == 8) {
+    if (goodChoices == 7) {
         rate = `Congrats! You made all the right choices to conserve the whales. Score: ${goodChoices}/${goodChoices + harmfulChoices}`;
     }
     else if (goodChoices > 4) {
