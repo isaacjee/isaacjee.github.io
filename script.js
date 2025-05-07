@@ -95,16 +95,16 @@ function showResults() {
 function rating() {
     rate = "";
 
-    if (goodChoices == scenarios.length - 3) {
+    if (goodChoices == 8) {
         rate = `Congrats! You made all the right choices to conserve the whales. Score: ${goodChoices}/${goodChoices + harmfulChoices}`;
     }
-    else if (goodChoices > scenarios.length * 0.66) {
+    else if (goodChoices > 4) {
         rate = `You did pretty good! You made most of the right choices for the whales. Score: ${goodChoices}/${goodChoices + harmfulChoices}`;
     }
-    else if (goodChoices > scenarios.length * 0.33) {
+    else if (goodChoices > 1) {
         rate = `Your decision making could use some work! You only made some of the right choices for the whales. Score: ${goodChoices}/${goodChoices + harmfulChoices}`;
     }
-    else if (goodChoices >= 1) {
+    else if (goodChoices == 1) {
         rate = `You only made one right choice for the whales! Do you even care about them? Score: ${goodChoices}/${goodChoices + harmfulChoices}`;
     }
     else {
