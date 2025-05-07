@@ -5,73 +5,113 @@ let harmfulChoices = parseInt(sessionStorage.getItem("harmfulChoices")) || 0;
 
 function loadScenario(index) {
     const scenario = scenarios[index];
+    const imageElement = document.getElementById("scenario-image");
+
     document.getElementById("scenario-title").textContent = scenario.title;
     document.getElementById("scenario-description").textContent = scenario.description;
 
-    scenario.choices.forEach((choice, i) => {
-        const btn = document.getElementById(`choice-${i}`);
-        btn.textContent = choice.text;
-        btn.onclick = () => showOutcome(choice.outcome, choice.type);
-    });
+    if (scenario.image) {
+        imageElement.src = scenario.image;
+        imageElement.classList.remove("hidden");
+    } else {
+        imageElement.classList.add("hidden");
+    }
 
-    document.getElementById("choice-0").disabled = false;
-    document.getElementById("choice-1").disabled = false;
+    if (currentScenarioIndex <= scenarios.length - 3) {
+        
+        scenario.choices.forEach((choice, i) => {
+            const btn = document.getElementById(`choice-${i}`);
+            btn.textContent = choice.text;
+            btn.onclick = () => showOutcome(choice.outcome, choice.type);
+        });
+
+        document.getElementById("choice-0").disabled = false;
+        document.getElementById("choice-1").disabled = false;
+
+    }
+    else if (currentScenarioIndex == scenarios.length - 2) {
+        document.getElementById("choice-1").classList.add("hidden");
+
+        const btn = document.getElementById(`choice-0`);
+        btn.textContent = scenario.text;
+        btn.onclick = () => showResults();
+    }
+    else {
+        document.getElementById("choice-0").classList.add("hidden");
+    }
 
     document.getElementById("outcome").classList.add("hidden");
     document.getElementById("next-scenario").classList.add("hidden");
-
-    updateScoreDisplay();
 }
 
 function showOutcome(outcomeText, choiceType) {
     document.getElementById("outcome").textContent = outcomeText;
     document.getElementById("outcome").classList.remove("hidden");
-    document.getElementById("next-scenario").classList.remove("hidden");
+    if (currentScenarioIndex != scenarios.length - 3) {
+        document.getElementById("next-scenario").classList.remove("hidden");
+    }
+    else {
+        document.getElementById("finish").classList.remove("hidden");
+    }
     document.getElementById("choice-0").disabled = true;
     document.getElementById("choice-1").disabled = true;
 
-    document.getElementById("score-display").textContent =
-  `Conservation Score: ${goodChoices} Good, ${harmfulChoices} Harmful`;
-
-
-    if (choiceType === "good") goodChoices++;
-    else if (choiceType === "harmful") harmfulChoices++;
-
+    if (choiceType === "good") {
+        goodChoices++;
+    }
+    else if (choiceType === "harmful") {
+        harmfulChoices++;
+    }
     sessionStorage.setItem("goodChoices", goodChoices);
     sessionStorage.setItem("harmfulChoices", harmfulChoices);
 
-    updateScoreDisplay();
-
-    currentScenarioIndex = (currentScenarioIndex + 1) % scenarios.length;
-
+    if (currentScenarioIndex != scenarios.length - 1) {
+        currentScenarioIndex = (currentScenarioIndex + 1);
+    }
     sessionStorage.setItem("currentScenarioIndex", currentScenarioIndex);
 }
 
+function showResults() {
+    if (currentScenarioIndex != scenarios.length - 1) {
+        currentScenarioIndex = (currentScenarioIndex + 1);
+    }
+
+    sessionStorage.setItem("currentScenarioIndex", currentScenarioIndex);
+
+    loadScenario(currentScenarioIndex);
+}
+
 document.getElementById("next-scenario").onclick = () => {
+    //if (currentScenarioIndex != scenarios.length - 1) {
+    //    currentScenarioIndex = (currentScenarioIndex + 1);
+    //}
+    //sessionStorage.setItem("currentScenarioIndex", currentScenarioIndex);
+
     loadScenario(currentScenarioIndex);
     document.getElementById("choice-0").disabled = false;
     document.getElementById("choice-1").disabled = false;
 };
 
-function updateScoreDisplay() {
-    document.getElementById("score-display").textContent =
-      `Conservation Score: ${goodChoices} Good, ${harmfulChoices} Harmful`;
+document.getElementById("finish").onclick = () => {
+    loadScenario(currentScenarioIndex);
+    document.getElementById("finish").classList.add("hidden");
+    document.getElementById("choice-0").disabled = false;
 }
-  
+
 function resetProgress() {
     sessionStorage.removeItem("currentScenarioIndex");
     sessionStorage.removeItem("goodChoices");
     sessionStorage.removeItem("harmfulChoices");
+    document.getElementById("choice-0").classList.remove("hidden");
+    document.getElementById("choice-1").classList.remove("hidden");
     currentScenarioIndex = 0;
     goodChoices = 0;
     harmfulChoices = 0;
     loadScenario(currentScenarioIndex);
-    updateScoreDisplay();
-  }  
+}  
 
 window.onload = () => {
     const savedIndex = sessionStorage.getItem("currentScenarioIndex");
     currentScenarioIndex = savedIndex ? parseInt(savedIndex) : 0;
     loadScenario(currentScenarioIndex);
-    updateScoreDisplay();
-};
+}
