@@ -165,8 +165,8 @@ const scenarios = [
       title: "Reality",
       description: "Although this may have been a fun game, these scenarios are real and the actual decisions rergarding them have lasting \
       impacts on whales, people, and the ocean ecosystems as a whole. Compared to the pre-whaling era, the current great whale populations have decreased \
-      anywhere from 70-90%. Whale populations have been increasing due to the internation moratorium on whaling put into place in 1986 and conservation efforts.\
-      but there are still some species, like the Blue Whale, that are endangered and their population growth has been extremely slow. Whales still face threats \
+      anywhere from 70-90%. Whale populations have been increasing due to the international moratorium on whaling put into place in 1986 and conservation efforts.\
+      But there are still some species, like the Blue Whale, that are endangered and their population growth has been extremely slow. Whales still face threats \
       from things such as climate change, illegal whaling, ship strikes, etc, as you've seen in the scenarios. Whales play a vital role in the marine ecosystem through \
       moving nutrients from the deep ocean to the surface, their role in the food chain as consumers and prey, and whale falls. We must continue to protect and conserve \
       the whales.",
