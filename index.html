@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Whale Conservation Decisions</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <title>Simple Text Box App</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="game-container">
-    <button id="restart" onclick="resetProgress()">Start Again</button>
-    <h1 id="start" class="hidden">Whales</h1>
-    <h1 id="scenario-title"></h1>
-    <img id="scenario-image" src="" alt="Scenario Image" class="hidden" />
-    <p id="scenario-description"></p>
-    <div id="choices">
-      <button id="choice-0"></button>
-      <button id="choice-1"></button>
+
+    <div class="container">
+        <h1>Simple Text App</h1>
+
+        <input type="text" id="textInput" placeholder="Type something here..." />
+
+        <div class="button-group">
+            <button id="btn1">Show Text</button>
+            <button id="btn2">Clear</button>
+        </div>
+
+        <p id="output"></p>
     </div>
-    <p id="outcome" class="hidden"></p>
-    <button id="next-scenario" class="hidden">Next Scenario</button>
-    <button id="finish" class="hidden">Finish</button>
-  </div>
-  <script src="scenarios.js"></script>
-  <script src="script.js"></script>
+
+    <script src="script.js"></script>
 </body>
 </html>
