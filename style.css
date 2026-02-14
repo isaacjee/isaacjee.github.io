@@ -6,7 +6,7 @@ title {
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #f9b6b6;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,8 +14,8 @@ body {
 }
 
 .container {
-    background: white;
-    padding: 30px;
+    background: rgb(255, 119, 119);
+    padding: 200px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     text-align: center;
@@ -28,7 +28,7 @@ input {
     margin-top: 15px;
     margin-bottom: 15px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #ffffff;
     font-size: 16px;
 }
 
@@ -42,17 +42,41 @@ button {
     width: 48%;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
-    color: white;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
     font-size: 14px;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #0056b3;
+#btn1:hover {
+    background-color: #1eff00;
+}
+
+#btn2:hover {
+  background-color:#ff0000
 }
 
 #output {
     margin-top: 15px;
     font-weight: bold;
 }
+
+#btn1 {
+    transition: transform 0.3s ease;
+}
+
+.heart {
+    position: fixed;
+    top: -10px;
+    font-size: 24px;
+    animation: fall linear forwards;
+    pointer-events: none;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
